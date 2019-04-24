@@ -3,18 +3,12 @@
 procedure 'CreateEvent', description: 'Create an Event', {
 
     step 'CreateEvent', {
-        description = ''
+        description = 'Create an event for the host'
         command = new File(pluginDir, "dsl/procedures/CreateEvent/steps/CreateEvent.pl").text
         shell = 'ec-perl'
-        
-        
-        
+
     }
-
-
-    formalOutputParameter 'event',
-        description: 'JSON representation of the deployed application'
-// === procedure_autogen ends, checksum: 397b37ffedfd60e0bdae0d839928f553 ===
+// === procedure_autogen ends, checksum: 57d29a7a6dc09ef3cefd748820424032 ===
 // Do not update the code above the line
 // procedure properties declaration can be placed in here, like
 // property 'property name', value: "value"

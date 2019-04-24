@@ -3,12 +3,6 @@
 // This part is auto-generated and will be regenerated upon subsequent updates
 procedure 'CreateConfiguration', description: 'Creates a plugin configuration', {
 
-
-
-
-
-
-
     step 'createConfiguration',
         command: new File(pluginDir, "dsl/procedures/CreateConfiguration/steps/createConfiguration.pl").text,
         errorHandling: 'abortProcedure',
@@ -19,6 +13,6 @@ procedure 'CreateConfiguration', description: 'Creates a plugin configuration', 
         timeLimitUnits: 'minutes'
 
     property 'ec_checkConnection', value: ''
-// === configuration ends, checksum: 1d7d86f8def4904961f47c2c2689809e ===
+// === configuration ends, checksum: 8e292d191415a8f02e2350128b9946c2 ===
 // Place your code below
 }
