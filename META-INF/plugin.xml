@@ -1,0 +1,13 @@
+<plugin>
+  <author>G. Maxey and L. Rochette</author>
+  <authorUrl>mailto:nase@electric-cloud.com</authorUrl>
+  <category>Application Performance Management</category>
+  <commander-version min="6.0" />
+  <configure>ec_config</configure>
+  <depends min="1.4.1">EC-PluginManager</depends>
+  <description>Dynatrace OneAgent integration with Flow</description>
+  <help>help.xml</help>
+  <key>EC-DynatraceOneAgent</key>
+  <label>EC-DynatraceOneAgent</label>
+  <version>0.0.1</version>
+</plugin>
