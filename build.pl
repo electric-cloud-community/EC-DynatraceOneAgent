@@ -13,7 +13,7 @@ use ElectricCommander ();
 $| = 1;
 my $ec = new ElectricCommander->new();
 
-my $pdk="ecpdk";
+my $pdk="ecpdk build -vvv";
 
 my $pluginVersion = "0.0.1";
 my $pluginKey = "EC-DynatraceOneAgent";
@@ -56,8 +56,8 @@ print "[INFO] - Cleaning\n";
 system("./clean.sh");
 
 print "[INFO] - Creating plugin '$pluginName'\n";
-print "[INFO] - $pdk build -bn $buildCounter\n";
-system ("$pdk build -bn $buildCounter");
+print "[INFO] - $pdk -bn $buildCounter\n";
+system ("$pdk -bn $buildCounter");
 
 move("build/${pluginKey}.zip", "./${pluginKey}.jar");
 
