@@ -84,7 +84,7 @@ sub createEvent {
         print "Response : " . Dumper $response;
         print "Response decoded: " . Dumper $response->decoded_content;
         my $respContent = from_json($response->decoded_content);
-        my $evenId=$respContent->{storedEventIds}->[0];
+        my $eventId=$respContent->{storedEventIds}->[0];
         $stepResult->setOutputParameter('event', $response->decoded_content);
         $stepResult->setOutputParameter('eventId', $eventId);
         $stepResult->setJobStepOutcome('success');
