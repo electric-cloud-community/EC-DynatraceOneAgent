@@ -81,13 +81,14 @@ sub createEvent {
     my $stepResult = $context->newStepResult();
 
     if ($response->is_success()) {
-        $stepResult->setJobStepOutcome('success');
-        $stepResult->setJobStepSummary("REST request with method POST to $url has been successful");
         print "Response : " . Dumper $response;
-        print "Response : " . Dumper $response->decoded_content;
+        print "Response decoded: " . Dumper $response->decoded_content;
         my $respContent = from_json($response->decoded_content);
+        my $evenId=$respContent->{storedEventIds}->[0];
         $stepResult->setOutputParameter('event', $response->decoded_content);
-        $stepResult->setOutputParameter('eventId', $respContent->{storedEventIds}->[0]);
+        $stepResult->setOutputParameter('eventId', $eventId);
+        $stepResult->setJobStepOutcome('success');
+        $stepResult->setJobStepSummary("Event $eventId created successfully");
 
     }
     else {
