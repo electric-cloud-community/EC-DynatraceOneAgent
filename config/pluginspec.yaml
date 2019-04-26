@@ -1,0 +1,74 @@
+# This is default sample specification
+# Feel free to change it
+# Call ecpdf showdoc pluginspec to see the list of available fields and their description
+pluginName: EC-DynatraceOneAgent
+description: Dynatrace OneAgent integration with Flow
+version: 1.0.0
+author: G. Maxey and L. Rochette
+authorUrl: mailto:nase@electric-cloud.com
+category: Application Performance Management
+
+# This is a declaration for the plugin configuration
+configuration:
+  # Shell to be used for checking connection
+  shell: ec-perl
+  parameters:
+   - name: config
+     type: entry
+     label: Configuration Name
+     required: true
+     documentation: The name for the created configuration
+   - name: desc
+     type: entry
+     label: Description
+     required: false
+     documentation: Description for the configuration
+   - name: endpoint
+     label: Endpoint
+     type: entry
+     required: true
+     documentation: Third-party endpoint to connect to.
+   - name: apiToken
+     type: entry
+     label: Api Token
+     required: true
+   - name: checkConnection
+     label: Check Connection?
+     type: checkbox
+     checkedValue: true
+     uncheckedValue: false
+     initiallyChecked: 1
+   - name: debugLevel
+     # This parameter name "debugLevel" is supported by ECPDF Logger out of the box
+     label: Debug Level
+     type: select
+     required: 0
+     value: 0
+     options:
+       - name: Info
+         value: 0
+       - name: Debug
+         value: 1
+       - name: Trace
+         value: 2
+
+procedures:
+- name: CreateEvent
+  description: Create an Event
+  hasConfig: true # configuration field will be generated automatically
+  parameters:
+  - name: annotationDescription
+    documentation: Description of the annotation
+    type: entry
+    required: true
+    label: Description of the annotation
+  - name: host
+    documentation: name of the host
+    type: entry
+    required: true
+    label: Host Name
+  outputParameters: {event: 'the json representation of the event created', eventId: 'ID of the event created'}
+  steps:
+  - name: CreateEvent
+    description: Create an event for the host
+    shell: ec-perl
