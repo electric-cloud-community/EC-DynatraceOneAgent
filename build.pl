@@ -56,7 +56,7 @@ print "[INFO] - Cleaning\n";
 system("./clean.sh");
 
 print "[INFO] - Creating plugin '$pluginName'\n";
-print "[INFO] - $pdk \n";
+print "[INFO] - $pdk -bn $buildCounter\n";
 system ("$pdk -bn $buildCounter");
 
 move("build/${pluginKey}.zip", "./${pluginKey}.jar");

@@ -8,7 +8,13 @@ procedure 'CreateEvent', description: 'Create an Event', {
         shell = 'ec-perl'
 
     }
-// === procedure_autogen ends, checksum: 57d29a7a6dc09ef3cefd748820424032 ===
+
+    formalOutputParameter 'event',
+        description: 'the json representation of the event created'
+
+    formalOutputParameter 'eventId',
+        description: 'ID of the event created'
+// === procedure_autogen ends, checksum: bd2298fdf6d18d7c83be732348a50041 ===
 // Do not update the code above the line
 // procedure properties declaration can be placed in here, like
 // property 'property name', value: "value"

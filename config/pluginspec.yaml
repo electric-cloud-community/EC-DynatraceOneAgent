@@ -67,6 +67,7 @@ procedures:
     type: entry
     required: true
     label: Host Name
+  outputParameters: {event: 'the json representation of the event created', eventId: 'ID of the event created'}
   steps:
   - name: CreateEvent
     description: Create an event for the host
