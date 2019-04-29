@@ -81,8 +81,8 @@ sub createEvent {
     my $stepResult = $context->newStepResult();
 
     if ($response->is_success()) {
-        print "Response : " . Dumper $response;
-        print "Response decoded: " . Dumper $response->decoded_content;
+        # print "Response : " . Dumper $response;
+        # print "Response decoded: " . Dumper $response->decoded_content;
         my $respContent = from_json($response->decoded_content);
         my $eventId=$respContent->{storedEventIds}->[0];
         $stepResult->setOutputParameter('event', $response->decoded_content);
@@ -93,13 +93,53 @@ sub createEvent {
     }
     else {
         $stepResult->setJobStepOutcome('error');
-        $stepResult->setJobStepSummary("Failed during REST request to $url using POST");
+        $stepResult->setJobStepSummary("Failed during POST REST request to $url");
         # print  "Response: " . Dumper($response);
         printf("Failed during REST request to $url using POST\n\t%s\n",$response->status_line);
         # this will abort whole procedure during apply, otherwise just step will be aborted.
         # $stepResult->abortProcedureOnApply(1);
     }
 
+    $stepResult->apply();
+}
+# Auto-generated method for the procedure GetEvents/GetEvents
+# Add your code into this method and it will be called when step runs
+sub getEvents {
+    my ($pluginObject) = @_;
+    my $context = $pluginObject->newContext();
+    my $params = $context->getStepParameters();
+
+    my $config = $context->getConfigValues();
+
+    my $authToken = $config->getParameter('apiToken')->getValue();
+    my $url = $config->getParameter('endpoint');
+    $url .= "/api/v1/events";
+
+    # loading component here using PluginObject;
+    my $restComponent = $context->newRESTClient();
+    my $request = $restComponent->newRequest('GET' => $url);
+    $request->header('Authorization', "Api-Token $authToken");
+    $request->header('Content-type', "application/json");
+
+    my $response = $restComponent->doRequest($request);
+    my $stepResult = $context->newStepResult();
+
+    if ($response->is_success()) {
+        # print "Response : " . Dumper $response;
+        # print "Response decoded: " . Dumper $response->decoded_content;
+        my $respContent = from_json($response->decoded_content);
+        my $events=$respContent->{storedEventIds}->[0];
+        $stepResult->setOutputParameter('events', $response->decoded_content);
+        $stepResult->setJobStepOutcome('success');
+    }
+    else {
+        $stepResult->setJobStepOutcome('error');
+        $stepResult->setJobStepSummary("Failed during GET REST request to $url");
+        # print  "Response: " . Dumper($response);
+        printf("Failed during REST request to $url using POST\n\t%s\n",$response->status_line);
+        # this will abort whole procedure during apply, otherwise just step will be aborted.
+        # $stepResult->abortProcedureOnApply(1);
+    }
     $stepResult->apply();
 }
 ## === step ends ===

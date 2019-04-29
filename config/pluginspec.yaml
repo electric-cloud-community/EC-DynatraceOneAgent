@@ -72,3 +72,14 @@ procedures:
   - name: CreateEvent
     description: Create an event for the host
     shell: ec-perl
+- name: GetEvents
+  description: Return a list of events
+  # hasConfig: true  # configuration field will be generated automatically
+  outputParameters: {events: 'the json representation of the events'}
+  shell: ec-perl
+  parameters:
+  - name: config
+    documentation: Previously defined configuration for the plugin
+    type: entry
+    required: true
+    label: Configuration Name
