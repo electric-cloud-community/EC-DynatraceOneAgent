@@ -83,3 +83,14 @@ procedures:
     type: entry
     required: true
     label: Configuration Name
+- name: GetHosts
+  description: Return a list of hosts
+  # hasConfig: true  # configuration field will be generated automatically
+  outputParameters: {hosts: 'the json representation of the hosts'}
+  shell: ec-perl
+  parameters:
+  - name: config
+    documentation: Previously defined configuration for the plugin
+    type: entry
+    required: true
+    label: Configuration Name
